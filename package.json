@@ -4,9 +4,11 @@
   "author": "Dexter Marks-Barber <dexter@marks-barber.co.uk>",
   "private": true,
   "dependencies": {
+    "autoprefixer": "^10.0.4",
     "clsx": "^1.1.1",
     "heroicons": "^0.4.2",
     "next": "^10.0.3",
+    "postcss": "^8.1.10",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

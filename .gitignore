@@ -1,0 +1,8 @@
+.vscode/
+.code/
+.idea/
+
+node_modules/
+.next/
+
+.env

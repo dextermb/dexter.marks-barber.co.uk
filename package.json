@@ -1,0 +1,15 @@
+{
+  "name": "dexter.marks-barber.co.uk",
+  "repository": "git@github.com:dextermb/dexter.marks-barber.co.uk",
+  "author": "Dexter Marks-Barber <dexter@marks-barber.co.uk>",
+  "private": true,
+  "dependencies": {
+    "clsx": "^1.1.1",
+    "heroicons": "^0.4.2",
+    "next": "^10.0.3",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "tailwindcss": "^2.0.1"
+  }
+}

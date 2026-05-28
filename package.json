@@ -1,0 +1,17 @@
+{
+  "name": "47b67563-5de9-438d-b241-29976630fd92",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i src/tailwind.css -o src/styles.css -m",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Dexter Marks-Barber <dexter@marks-barber.co.uk>",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0"
+  }
+}

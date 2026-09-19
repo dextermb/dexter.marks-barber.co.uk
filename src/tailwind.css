@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 @layer base {
+  html {
+    color-scheme: light dark;
+  }
+
+  body {
+    @apply bg-white text-stone-900 dark:bg-stone-950 dark:text-stone-300;
+  }
+
   a {
     @apply underline underline-offset-1;
   }

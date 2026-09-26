@@ -1,0 +1,169 @@
+/* Blackline — Tailwind CSS v4 theme.
+ * Put this file after @import "tailwindcss". Dark is the default; set data-theme="light" on <html> for light.
+ * Utilities: bg-background, text-foreground, text-muted, border-border, hover:bg-accent, hover:text-accent-foreground,
+ * font-mono, text-label, tracking-label, py-control, px-2ch, rounded-none, shadow-card. */
+
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+@theme {
+  /* Reset Tailwind defaults so only this palette and radius exist. */
+  --color-*: initial;
+  --radius-*: initial;
+
+  --color-black: #000000;
+  --color-gray-3: #080808;
+  --color-gray-15: #262626;
+  --color-gray-23: #3a3a3a;
+  --color-gray-35: #585858;
+  --color-gray-42: #6c6c6c;
+  --color-gray-54: #8a8a8a;
+  --color-gray-66: #a8a8a8;
+  --color-gray-78: #c6c6c6;
+  --color-gray-89: #e4e4e4;
+  --color-gray-93: #eeeeee;
+  --color-white: #ffffff;
+  --color-green-400: #4ade80;
+  --color-green-700: #008000;
+  --color-amber-400: #fbbf24;
+  --color-amber-800: #925e00;
+  --color-red-400: #ff6666;
+  --color-red-700: #b91c1c;
+  --color-blue-400: #60a5fa;
+  --color-blue-700: #1d4ed8;
+  --color-background: var(--color-black);
+  --color-surface: var(--color-gray-3);
+  --color-card: var(--color-gray-3);
+  --color-elevated: var(--color-gray-15);
+  --color-input: var(--color-gray-3);
+  --color-control: var(--color-gray-15);
+  --color-foreground: var(--color-white);
+  --color-heading: var(--color-gray-93);
+  --color-secondary: var(--color-gray-78);
+  --color-muted: var(--color-gray-54);
+  --color-dimmed: var(--color-gray-42);
+  --color-faint: var(--color-gray-23);
+  --color-primary: var(--color-white);
+  --color-primary-hover: var(--color-gray-89);
+  --color-primary-foreground: var(--color-black);
+  --color-active: var(--color-white);
+  --color-active-foreground: var(--color-black);
+  --color-accent: var(--color-white);
+  --color-accent-foreground: var(--color-black);
+  --color-border: var(--color-gray-23);
+  --color-border-strong: var(--color-gray-35);
+  --color-border-hover: var(--color-gray-54);
+  --color-ring: var(--color-gray-35);
+  --color-positive: var(--color-green-400);
+  --color-warning: var(--color-amber-400);
+  --color-danger: var(--color-red-400);
+  --color-danger-foreground: var(--color-black);
+  --color-info: var(--color-blue-400);
+  --color-border-subtle: #3a3a3a80;
+  --color-accent-subdued: #ffffff2e;
+  --color-positive-bg: #4ade8014;
+  --color-warning-bg: #fbbf2414;
+  --color-danger-bg: #ff666614;
+  --color-info-bg: #60a5fa14;
+  --color-row-hover: #ffffff08;
+  --color-highlight: #ffffff14;
+  --color-highlight-border: #ffffff26;
+  --color-code: #262626;
+  --color-overlay: #000000d9;
+
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans: Geist, system-ui, -apple-system, sans-serif;
+
+  --text-label: 0.75rem;
+  --text-label--line-height: 1.5;
+  --text-body: 0.75rem;
+  --text-body--line-height: 1.5;
+  --text-small: 0.7rem;
+  --text-small--line-height: 1.5;
+  --text-micro: 0.65rem;
+  --text-micro--line-height: 1.5;
+  --text-root: 1rem;
+  --text-root--line-height: 1.5;
+
+  --tracking-label: 0.08em;
+  --tracking-small: 0.05em;
+
+  --spacing: 0.25rem;
+  --spacing-rhythm: 1.25rem;
+  --spacing-control: 0.375rem;
+  --spacing-nav: 0.5rem;
+  --spacing-row: 0.5625rem;
+  --spacing-submit: 0.75rem;
+  --spacing-section-t: 0.875rem;
+  --spacing-section-b: 1.125rem;
+  --spacing-hero: 1.75rem;
+  --spacing-half-ch: 0.3em;
+  --spacing-1ch: 0.6em;
+  --spacing-1\.5ch: 0.9em;
+  --spacing-2ch: 1.2em;
+  --spacing-3ch: 1.8em;
+
+  --radius-none: 0px;
+
+  --shadow-card: none;
+  --default-transition-duration: 120ms;
+  --default-transition-timing-function: ease;
+}
+
+[data-theme="light"] {
+  --color-background: var(--color-white);
+  --color-surface: var(--color-gray-93);
+  --color-card: var(--color-white);
+  --color-elevated: var(--color-gray-93);
+  --color-input: var(--color-white);
+  --color-control: var(--color-gray-89);
+  --color-foreground: var(--color-black);
+  --color-heading: var(--color-black);
+  --color-secondary: var(--color-gray-23);
+  --color-muted: var(--color-gray-35);
+  --color-dimmed: var(--color-gray-54);
+  --color-faint: var(--color-gray-78);
+  --color-primary: var(--color-black);
+  --color-primary-hover: var(--color-gray-23);
+  --color-primary-foreground: var(--color-white);
+  --color-active: var(--color-black);
+  --color-active-foreground: var(--color-white);
+  --color-accent: var(--color-black);
+  --color-accent-foreground: var(--color-white);
+  --color-border: var(--color-gray-89);
+  --color-border-strong: var(--color-gray-78);
+  --color-border-hover: var(--color-gray-54);
+  --color-ring: var(--color-gray-54);
+  --color-positive: var(--color-green-700);
+  --color-warning: var(--color-amber-800);
+  --color-danger: var(--color-red-700);
+  --color-danger-foreground: var(--color-white);
+  --color-info: var(--color-blue-700);
+  --color-border-subtle: #e4e4e499;
+  --color-accent-subdued: #0000001f;
+  --color-positive-bg: #00800012;
+  --color-warning-bg: #925e0014;
+  --color-danger-bg: #b91c1c12;
+  --color-info-bg: #1d4ed814;
+  --color-row-hover: #00000008;
+  --color-highlight: #0000000a;
+  --color-highlight-border: #00000014;
+  --color-code: #eeeeee;
+  --color-overlay: #00000080;
+  --shadow-card: 0 1px 3px #0000000f, 0 1px 2px #0000000a;
+}
+
+@layer base {
+  html { font-size: 17px; background: var(--color-background); color: var(--color-foreground); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  body { font-family: var(--font-mono); font-size: var(--text-body); line-height: 1.5; }
+  *, ::before, ::after { border-color: var(--color-border); }
+  :focus-visible { outline: 2px solid var(--color-ring); outline-offset: 2px; }
+}
+
+/* The inversion: apply to any link, button or row. */
+@utility invert-hover {
+  transition-property: background-color, color, border-color;
+  transition-duration: 120ms;
+  &:hover, &:focus-visible, &[aria-expanded="true"], &[aria-current], &[aria-selected="true"] {
+    background-color: var(--color-accent); color: var(--color-accent-foreground); border-color: var(--color-accent); outline: none;
+  }
+}

@@ -1,48 +1,73 @@
 [
   {
-    "category": "Scripting",
-    "skills": [
-      { "name": "Bash", "level": 3 },
-      { "name": "Go", "level": 3 },
-      { "name": "Python", "level": 3 },
-      { "name": "Java", "level": 2 }
+    "category": "Management",
+    "groups": [
+      {
+        "skills": [
+          "1:1s and performance reviews",
+          "Hiring and interviewing",
+          "Roadmap and delivery planning",
+          "Incident management"
+        ]
+      }
     ]
   },
   {
-    "category": "Databases",
-    "skills": [
-      { "name": "MySQL", "level": 4 },
-      { "name": "Snowflake", "level": 3 },
-      { "name": "MSSQL", "level": 3 },
-      { "name": "Postgres", "level": 2 }
+    "category": "Languages",
+    "groups": [
+      {
+        "level": "Expert",
+        "skills": ["TypeScript", "JavaScript", "PHP"]
+      },
+      {
+        "level": "Working knowledge",
+        "skills": ["Go", "Python", "Bash", "Java"]
+      }
     ]
   },
   {
     "category": "Web",
-    "skills": [
-      { "name": "PHP", "level": 5 },
-      { "name": "CSS/CSS3", "level": 4 },
-      { "name": "Tailwind", "level": 4 },
-      { "name": "HTML/HTML5", "level": 4 },
-      { "name": "JavaScript", "level": 5 },
-      { "name": "TypeScript", "level": 4 },
-      { "name": "React", "level": 5 },
-      { "name": "Vue", "level": 3 }
+    "groups": [
+      {
+        "level": "Expert",
+        "skills": ["React", "Tailwind", "HTML", "CSS"]
+      },
+      {
+        "level": "Working knowledge",
+        "skills": ["Vue"]
+      }
+    ]
+  },
+  {
+    "category": "Databases",
+    "groups": [
+      {
+        "level": "Expert",
+        "skills": ["MySQL"]
+      },
+      {
+        "level": "Working knowledge",
+        "skills": ["MSSQL", "Snowflake", "Postgres"]
+      }
     ]
   },
   {
     "category": "Tooling",
-    "skills": [
+    "groups": [
       {
-        "name": "Super <span class=\"line-through text-stone-500\">Artificial</span> Intelligence",
-        "level": 4
+        "level": "Expert",
+        "skills": [
+          "Docker",
+          "GitLab CI/CD",
+          "GitHub CI/CD",
+          "Atlassian Suite",
+          "Claude Code"
+        ]
       },
-      { "name": "Atlassian Suite", "level": 4 },
-      { "name": "Git<span class=\"font-medium\">Lab</span> CI/CD", "level": 5 },
-      { "name": "Git<span class=\"font-medium\">Hub</span> CI/CD", "level": 4 },
-      { "name": "Terraform", "level": 3 },
-      { "name": "AWS Infrastructure", "level": 3 },
-      { "name": "GCP Infrastructure", "level": 1 }
+      {
+        "level": "Working knowledge",
+        "skills": ["Terraform", "AWS"]
+      }
     ]
   }
 ]

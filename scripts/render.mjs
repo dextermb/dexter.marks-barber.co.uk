@@ -49,23 +49,28 @@ const renderSocials = async (socials) => {
       throw new Error(`src/assets has no ${platform}.svg`);
     });
 
-  return socials.flatMap(({ platform, url }) => [
-    "<li>",
-    url.startsWith("mailto:")
-      ? `  <a class="flex items-center gap-1" href="${url}">`
-      : `  <a class="flex items-center gap-1" href="${url}" rel="noreferrer noopener" target="_blank">`,
-    `    <img class="size-4" src="assets/${platform}.svg" alt="${platform}" />`,
-    `    <span class="hidden print:inline">${linkText(url)}</span>`,
-    "  </a>",
-    "</li>",
-  ]);
+  return socials.flatMap(({ platform, name, url }) => {
+    const email = url.startsWith("mailto:");
+    return [
+      "<li>",
+      email
+        ? `  <a class="flex items-center gap-1" href="${url}">`
+        : `  <a class="flex items-center gap-1" href="${url}" rel="noreferrer noopener" target="_blank">`,
+      `    <img class="size-4" src="assets/${platform}.svg" alt="${name}" />`,
+      email
+        ? `    <span>${linkText(url)}</span>`
+        : `    <span class="hidden print:inline">${linkText(url)}</span>`,
+      "  </a>",
+      "</li>",
+    ];
+  });
 };
 
 const renderWins = (wins) =>
   wins.length === 0
     ? []
     : [
-        '      <ul class="list-disc pl-4 text-stone-400">',
+        '      <ul class="mt-1 list-disc space-y-0.5 pl-4 text-stone-500">',
         ...wins.map((win) => `        <li>${win}</li>`),
         "      </ul>",
       ];
@@ -73,13 +78,13 @@ const renderWins = (wins) =>
 const renderExperience = (employers) =>
   employers.flatMap(({ company, roles }) => [
     '<li class="print:break-inside-avoid">',
-    `  <p class="text-stone-700">${company}</p>`,
-    '  <ul class="pl-2 text-stone-500">',
+    `  <p class="mb-1 font-medium text-stone-700">${company}</p>`,
+    '  <ul class="space-y-3 pl-2 text-stone-700">',
     ...roles.flatMap(({ title, start, end, wins = [] }) => [
       "    <li>",
       '      <div class="flex justify-between gap-4">',
       `        <p>${title}</p>`,
-      `        <p class="shrink-0 text-stone-300">${formatDate(start)} – ${formatDate(end)}</p>`,
+      `        <p class="shrink-0 text-stone-500">${formatDate(start)} – ${formatDate(end)}</p>`,
       "      </div>",
       ...renderWins(wins),
       "    </li>",
@@ -89,15 +94,17 @@ const renderExperience = (employers) =>
   ]);
 
 const renderSkills = (categories) =>
-  categories.flatMap(({ category, skills }, index) => [
+  categories.flatMap(({ category, groups }, index) => [
     index === 0 ? "<li data-heading>" : '<li class="pt-2" data-heading>',
-    `  <p class="text-stone-300">${category}</p>`,
+    `  <p class="text-stone-500">${category}</p>`,
     "</li>",
-    ...skills.flatMap(({ name, level }) => [
+    ...groups.flatMap(({ level, skills }) => [
       "<li>",
-      '  <div class="grid grid-cols-2 gap-4">',
-      `    <p class="text-stone-700">${name}</p>`,
-      `    <p class="text-stone-300 text-right">${level}/5</p>`,
+      '  <div class="grid grid-cols-[1fr_auto] gap-4">',
+      `    <p class="text-stone-700">${skills.join(", ")}</p>`,
+      ...(level
+        ? [`    <p class="text-stone-500 text-right">${level}</p>`]
+        : []),
       "  </div>",
       "</li>",
     ]),
@@ -116,6 +123,32 @@ const renderEducation = (places) =>
     "  </ul>",
     "</li>",
   ]);
+
+const tagline = "Self-taught software engineer since the early 2010s.";
+
+const plain = (html) => html.replace(/<[^>]*>/g, "").replaceAll('"', "&quot;");
+
+const currentRole = (employers) =>
+  employers
+    .flatMap(({ company, roles }) =>
+      roles.map(({ title, end }) => ({ company, title, end })),
+    )
+    .find(({ end }) => end === null);
+
+const renderHeadline = (role) =>
+  role
+    ? [`<p class="text-stone-500">${role.title} at ${role.company}</p>`]
+    : [];
+
+const renderDescription = (role) => {
+  const description = plain(
+    role ? `${role.title} at ${role.company}. ${tagline}` : tagline,
+  );
+  return [
+    `<meta name="description" content="${description}" />`,
+    `<meta property="og:description" content="${description}" />`,
+  ];
+};
 
 const renderLastUpdated = async (sha) => {
   if (!sha) return [];
@@ -148,17 +181,18 @@ const fill = (html, marker, lines) => {
 const page = new URL("index.html", src);
 const current = await readFile(page, "utf8");
 
-let html = fill(
-  current,
+const experience = await read("data/experience.json");
+const role = currentRole(experience);
+
+let html = fill(current, "description", renderDescription(role));
+html = fill(html, "headline", renderHeadline(role));
+html = fill(
+  html,
   "socials",
   await renderSocials(await read("data/socials.json")),
 );
 
-html = fill(
-  html,
-  "experience",
-  renderExperience(await read("data/experience.json")),
-);
+html = fill(html, "experience", renderExperience(experience));
 
 html = fill(html, "skills", renderSkills(await read("data/skills.json")));
 html = fill(

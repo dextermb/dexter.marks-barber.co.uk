@@ -1,7 +1,7 @@
 # Content
 
-The contact links, the experience list, the skills list, and the education list
-come from JSON files in `src/data/`. `scripts/render.mjs` writes these lists
+The contact links, the headline, the experience list, the skills list, and the
+education list come from JSON files in `src/data/`. `scripts/render.mjs` writes these lists
 into `src/index.html` when you run `pnpm build`. Do not edit the lists in
 `src/index.html`, because the next build replaces them.
 
@@ -16,9 +16,10 @@ VERCEL_GIT_COMMIT_SHA ────┘
 ```
 
 1. `render.mjs` finds each marker pair in `src/index.html`, for example
-   `<!-- skills -->` … `<!-- /skills -->`. The markers are `socials`,
-   `experience`, `skills`, `education`, and `last updated`.
-2. It replaces the text between each pair with new `<li>` elements.
+   `<!-- skills -->` … `<!-- /skills -->`. The markers are `description`,
+   `headline`, `socials`, `experience`, `skills`, `education`, and
+   `last updated`.
+2. It replaces the text between each pair with new elements.
 3. Tailwind then reads `src/index.html` and writes `src/styles.css`.
 
 The render step must run before Tailwind. Tailwind generates CSS only for the
@@ -106,8 +107,6 @@ The print styles are the `print:` classes in `src/index.html` and
 - The content uses the full page width.
 - Each employer stays on one page, so a company name is never alone at the
   bottom of a page.
-- `stone-300` and `stone-400` print as `stone-500`. The lighter greys are too
-  faint on paper.
 
 To see the PDF without the dialog, run:
 
@@ -123,16 +122,17 @@ An array of links, in page order.
 | Field      | Type   | Notes                                         |
 | ---------- | ------ | --------------------------------------------- |
 | `platform` | string | Selects the logo `src/assets/<platform>.svg`. |
+| `name`     | string | The `alt` text of the logo, e.g. `GitHub`.    |
 | `url`      | string | The link target. `mailto:` is permitted.      |
 
-The page shows each link as its logo. The `platform` value is also the `alt`
-text of the logo.
+The page shows each link as its logo. The email link also shows its address on
+screen, so a reader can copy it without a click.
 
 A web link opens in a new tab. A `mailto:` link does not, because a new tab
 for an email link stays empty in some browsers.
 
-A printed page cannot use a logo as a link. Thus, in print, each logo also
-shows its URL without the `https://` or `mailto:` prefix, for example
+A printed page cannot use a logo as a link. Thus, in print, each web logo
+also shows its URL without the `https://` or `mailto:` prefix, for example
 `github.com/dextermb`.
 
 ## `src/data/experience.json`
@@ -163,16 +163,37 @@ The page shows the wins as a bullet list under the role title. If a role has
 no wins, the page shows only the title. Thus, you can add wins one role at a
 time. A win can contain inline HTML (see [Inline HTML](#inline-html)).
 
+### Headline and description
+
+The current role is the first role with `"end": null`, in file order. The page
+shows it under your name, for example `Software Engineering Manager at Veson
+Nautical`. The `description` and `og:description` meta tags start with the
+same text, then add the tagline from `render.mjs`.
+
+A marker comment cannot go inside an attribute. Thus, the `description` block
+holds both `<meta>` elements, not only their text. `render.mjs` removes inline
+HTML from the meta text, because a tag in an attribute shows as text.
+
+If no role has `"end": null`, the page shows no headline, and the description
+is only the tagline.
+
 ## `src/data/skills.json`
 
 An array of categories, in page order.
 
-| Field            | Type   | Notes                                 |
-| ---------------- | ------ | ------------------------------------- |
-| `category`       | string | The heading above the group.          |
-| `skills`         | array  | In page order.                        |
-| `skills[].name`  | string | Inline HTML is permitted (see below). |
-| `skills[].level` | 1 to 5 | The page shows this as `4/5`.         |
+| Field             | Type          | Notes                                 |
+| ----------------- | ------------- | ------------------------------------- |
+| `category`        | string        | The heading above the groups.         |
+| `groups`          | array         | In page order.                        |
+| `groups[].level`  | string        | Optional, e.g. `Expert`.              |
+| `groups[].skills` | array, string | In page order. Inline HTML permitted. |
+
+The page shows each group as one row: the skills as a comma list on the left,
+and the level on the right. A group with no `level` shows only the skills. Use
+this for a category where a level does not apply, such as `Management`.
+
+The page shows a level as a word, not a number. A number such as `5/5` invites
+a challenge in an interview, and a low number points the reader at a weakness.
 
 ## `src/data/education.json`
 
@@ -186,6 +207,6 @@ An array of places, newest first.
 ## Inline HTML
 
 `render.mjs` does not escape strings. It puts each string into the page as
-HTML. Some names use this to show markup, for example
-`Git<span class="font-medium">Lab</span> CI/CD`. Thus, write `&amp;` for a
+HTML. Thus, a string can contain markup such as
+`<span class="font-medium">…</span>`. Also, write `&amp;` for a
 literal `&` and `&lt;` for a literal `<`.

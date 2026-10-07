@@ -1,18 +1,17 @@
 [
   {
-    "platform": "email",
-    "url": "mailto:dexter@marks-barber.co.uk"
-  },
-  {
     "platform": "x",
+    "name": "X",
     "url": "https://x.com/dmarksbarber"
   },
   {
     "platform": "github",
+    "name": "GitHub",
     "url": "https://github.com/dextermb"
   },
   {
     "platform": "linkedin",
+    "name": "LinkedIn",
     "url": "https://linkedin.com/in/dexter-marks-barber"
   }
 ]

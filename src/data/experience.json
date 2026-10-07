@@ -7,8 +7,8 @@
         "start": "2026-03",
         "end": null,
         "wins": [
-          "Led multiple teams at once",
-          "Helped drive AI adoption in Engineering",
+          "Led 2 teams with 10 engineers in total",
+          "Grew AI adoption in Engineering from 0% to 95%",
           "Improved SDLC across planning, code review, and releases"
         ]
       },
@@ -17,7 +17,7 @@
         "start": "2024-05",
         "end": "2026-03",
         "wins": [
-          "Led a single team",
+          "Led a team of 5 engineers",
           "Drove delivery of core initiatives",
           "Worked with multiple disciplines to align goals"
         ]
@@ -46,7 +46,7 @@
         "start": "2022-04",
         "end": "2023-10",
         "wins": [
-          "Implemented design changes across the platform",
+          "Redesigned 10+ screens across embedded ticketing (calendar, ticket types, and merchandise) and the primary website",
           "Implemented advanced event booking workflows"
         ]
       }
@@ -60,7 +60,7 @@
         "start": "2021-12",
         "end": "2022-04",
         "wins": [
-          "Built a web team from scratch",
+          "Built a web team of 3 engineers from scratch",
           "Mentored colleagues to bring them up to speed with Appian"
         ]
       },

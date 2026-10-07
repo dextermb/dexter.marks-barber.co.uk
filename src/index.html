@@ -59,7 +59,7 @@
       </section>
 
       <section>
-        <p class="font-medium">Experience</p>
+        <p class="font-medium">Primary Experience</p>
         <ul class="space-y-2 text-sm">
           <!-- experience -->
           <li>
@@ -143,7 +143,7 @@
 
       <section>
         <p class="font-medium">Skills and Tooling</p>
-        <ol class="text-sm">
+        <ol class="text-sm *:not-data-heading:hover:bg-stone-100">
           <!-- skills -->
           <li data-heading>
             <p class="text-stone-300">Scripting</p>
@@ -328,6 +328,32 @@
           <!-- /education -->
         </ul>
       </section>
+
+      <footer class="text-sm text-stone-300">
+        <!-- last updated -->
+        <!-- /last updated -->
+      </footer>
     </div>
+
+    <script type="module">
+      const units = [
+        ["year", 31536000],
+        ["month", 2592000],
+        ["week", 604800],
+        ["day", 86400],
+        ["hour", 3600],
+        ["minute", 60],
+      ];
+      const relative = new Intl.RelativeTimeFormat("en", { numeric: "auto" });
+
+      for (const time of document.querySelectorAll("time[datetime]")) {
+        const seconds = (new Date(time.dateTime) - Date.now()) / 1000;
+        const [unit, size] = units.find(
+          ([, size]) => Math.abs(seconds) >= size,
+        ) ?? ["second", 1];
+        time.title = time.textContent;
+        time.textContent = relative.format(Math.round(seconds / size), unit);
+      }
+    </script>
   </body>
 </html>

@@ -1,4 +1,6 @@
+import { execFile } from "node:child_process";
 import { access, readFile, writeFile } from "node:fs/promises";
+import { promisify } from "node:util";
 
 const src = new URL("../src/", import.meta.url);
 const read = async (name) =>
@@ -24,6 +26,18 @@ const formatDate = (date) => {
   const [year, month] = date.split("-");
   return `${months[month - 1]} ${year}`;
 };
+
+const formatDay = (iso) => {
+  const [year, month, day] = iso.slice(0, 10).split("-");
+  return `${Number(day)} ${months[month - 1]} ${year}`;
+};
+
+const run = promisify(execFile);
+
+const commitDate = (sha) =>
+  run("git", ["log", "-1", "--format=%cI", sha])
+    .then(({ stdout }) => stdout.trim())
+    .catch(() => new Date().toISOString());
 
 const indent = (lines, depth) => lines.map((line) => " ".repeat(depth) + line);
 
@@ -88,6 +102,18 @@ const renderEducation = (places) =>
     "</li>",
   ]);
 
+const renderLastUpdated = async (sha) => {
+  if (!sha) return [];
+  const date = await commitDate(sha);
+  return [
+    "<p>",
+    "  Last updated",
+    `  <time datetime="${date}">${formatDay(date)}</time>`,
+    `  · <code class="font-geist-mono">${sha.slice(0, 7)}</code>`,
+    "</p>",
+  ];
+};
+
 const fill = (html, marker, lines) => {
   const pattern = new RegExp(
     `^( *)<!-- ${marker} -->\\n[\\s\\S]*?^ *<!-- /${marker} -->$`,
@@ -124,6 +150,11 @@ html = fill(
   html,
   "education",
   renderEducation(await read("data/education.json")),
+);
+html = fill(
+  html,
+  "last updated",
+  await renderLastUpdated(process.env.VERCEL_GIT_COMMIT_SHA),
 );
 
 if (html !== current) await writeFile(page, html);

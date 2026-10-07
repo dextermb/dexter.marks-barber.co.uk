@@ -8,15 +8,16 @@ into `src/index.html` when you run `pnpm build`. Do not edit the lists in
 ## Data flow
 
 ```
-src/data/contact.json ────┐
+src/data/socials.json ────┐
 src/data/experience.json ─┤
 src/data/skills.json ─────┼─▶ scripts/render.mjs ─▶ src/index.html ─▶ tailwindcss ─▶ src/styles.css
-src/data/education.json ──┘
+src/data/education.json ──┤
+VERCEL_GIT_COMMIT_SHA ────┘
 ```
 
 1. `render.mjs` finds each marker pair in `src/index.html`, for example
-   `<!-- skills -->` … `<!-- /skills -->`. The markers are `contact`,
-   `experience`, `skills`, and `education`.
+   `<!-- skills -->` … `<!-- /skills -->`. The markers are `socials`,
+   `experience`, `skills`, `education`, and `last updated`.
 2. It replaces the text between each pair with new `<li>` elements.
 3. Tailwind then reads `src/index.html` and writes `src/styles.css`.
 
@@ -26,11 +27,41 @@ classes that it finds, and some classes are only in the JSON data.
 The build stops with an error in these conditions:
 
 - A marker pair is missing from `src/index.html`.
-- A contact `platform` has no logo in `src/assets/`.
+- A `platform` in `socials.json` has no logo in `src/assets/`.
 
 The output of `render.mjs` does not change when the data does not change. Thus,
 the committed `src/index.html` always agrees with the JSON files after a build.
 If the output is the same as the current file, `render.mjs` does not write it.
+
+## Last updated
+
+The footer shows the date and the short hash of the deployed commit, for
+example `Last updated 3 days ago · 24063f2`.
+
+`render.mjs` fills the `last updated` block only when `VERCEL_GIT_COMMIT_SHA`
+is set. Vercel sets this variable in each build. A local build and the
+pre-commit hook leave the block empty. This is necessary because a pre-commit
+hook cannot know the hash of its own commit: Git calculates the hash after the
+hook. Thus, the committed `src/index.html` always has an empty block.
+
+The date is the commit date from `git log`. If the build has no Git history,
+the date is the build time.
+
+`render.mjs` writes an absolute date in a `<time datetime>` element. A static
+script at the end of `src/index.html` changes each `<time>` into relative text
+with `Intl.RelativeTimeFormat`. The absolute date stays in the `title`
+attribute. A text that the build writes, such as "3 days ago", is wrong on the
+next day, so the browser must calculate it. Without JavaScript, the reader sees
+the absolute date.
+
+To see the footer locally, run:
+
+```sh
+VERCEL_GIT_COMMIT_SHA=$(git rev-parse HEAD) pnpm build
+```
+
+The pre-commit hook builds again without the variable, so the block is empty
+in the commit.
 
 ## Pre-commit hook
 

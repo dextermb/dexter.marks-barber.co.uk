@@ -41,6 +41,8 @@ const commitDate = (sha) =>
 
 const indent = (lines, depth) => lines.map((line) => " ".repeat(depth) + line);
 
+const linkText = (url) => url.replace(/^(mailto:|https?:\/\/)/, "");
+
 const renderSocials = async (socials) => {
   for (const { platform } of socials)
     await access(new URL(`assets/${platform}.svg`, src)).catch(() => {
@@ -49,8 +51,11 @@ const renderSocials = async (socials) => {
 
   return socials.flatMap(({ platform, url }) => [
     "<li>",
-    `  <a href="${url}" rel="noreferrer noopener" target="_blank">`,
+    url.startsWith("mailto:")
+      ? `  <a class="flex items-center gap-1" href="${url}">`
+      : `  <a class="flex items-center gap-1" href="${url}" rel="noreferrer noopener" target="_blank">`,
     `    <img class="size-4" src="assets/${platform}.svg" alt="${platform}" />`,
+    `    <span class="hidden print:inline">${linkText(url)}</span>`,
     "  </a>",
     "</li>",
   ]);
@@ -67,15 +72,15 @@ const renderWins = (wins) =>
 
 const renderExperience = (employers) =>
   employers.flatMap(({ company, roles }) => [
-    "<li>",
-    '  <div class="flex items-center justify-between gap-4">',
-    `    <p class="text-stone-700">${company}</p>`,
-    `    <p class="text-stone-300">${formatDate(roles[0].end)}</p>`,
-    "  </div>",
+    '<li class="print:break-inside-avoid">',
+    `  <p class="text-stone-700">${company}</p>`,
     '  <ul class="pl-2 text-stone-500">',
-    ...roles.flatMap(({ title, wins = [] }) => [
+    ...roles.flatMap(({ title, start, end, wins = [] }) => [
       "    <li>",
-      `      <p>${title}</p>`,
+      '      <div class="flex justify-between gap-4">',
+      `        <p>${title}</p>`,
+      `        <p class="shrink-0 text-stone-300">${formatDate(start)} – ${formatDate(end)}</p>`,
+      "      </div>",
       ...renderWins(wins),
       "    </li>",
     ]),

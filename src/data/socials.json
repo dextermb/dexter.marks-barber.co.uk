@@ -1,5 +1,9 @@
 [
   {
+    "platform": "email",
+    "url": "mailto:dexter@marks-barber.co.uk"
+  },
+  {
     "platform": "x",
     "url": "https://x.com/dmarksbarber"
   },

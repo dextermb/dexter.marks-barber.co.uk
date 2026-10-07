@@ -4,3 +4,15 @@
   --font-geist: Geist, var(--font-sans);
   --font-geist-mono: "Geist Mono", var(--font-mono);
 }
+
+@media print {
+  @page {
+    size: A4;
+    margin: 15mm;
+  }
+
+  :root {
+    --color-stone-300: var(--color-stone-500);
+    --color-stone-400: var(--color-stone-500);
+  }
+}

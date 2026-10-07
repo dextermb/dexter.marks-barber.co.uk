@@ -34,7 +34,7 @@
     "category": "Tooling",
     "skills": [
       {
-        "name": "Super <span class=\"line-through text-muted\">Artificial</span> Intelligence",
+        "name": "Super <span class=\"line-through text-stone-500\">Artificial</span> Intelligence",
         "level": 4
       },
       { "name": "Atlassian Suite", "level": 4 },

@@ -2,40 +2,111 @@
   {
     "company": "Veson Nautical",
     "roles": [
-      { "title": "Software Engineering Manager", "start": "2026-03", "end": null, "wins": [] },
-      { "title": "Software Engineering Lead", "start": "2024-05", "end": "2026-03", "wins": [] }
+      {
+        "title": "Software Engineering Manager",
+        "start": "2026-03",
+        "end": null,
+        "wins": [
+          "Led multiple teams at once",
+          "Helped drive AI adoption in Engineering",
+          "Improved SDLC across planning, code review, and releases"
+        ]
+      },
+      {
+        "title": "Software Engineering Lead",
+        "start": "2024-05",
+        "end": "2026-03",
+        "wins": [
+          "Led a single team",
+          "Drove delivery of core initiatives",
+          "Worked with multiple disciplines to align goals"
+        ]
+      }
     ]
   },
   {
     "company": "GivEnergy",
     "roles": [
-      { "title": "Software Engineer", "start": "2023-11", "end": "2024-05", "wins": [] }
+      {
+        "title": "Software Engineer",
+        "start": "2023-11",
+        "end": "2024-05",
+        "wins": [
+          "Helped push mobile applications towards production readiness",
+          "Drove improvements to testing methodologies"
+        ]
+      }
     ]
   },
   {
     "company": "Beyonk",
     "roles": [
-      { "title": "Senior Software Engineer", "start": "2022-04", "end": "2023-10", "wins": [] }
+      {
+        "title": "Senior Software Engineer",
+        "start": "2022-04",
+        "end": "2023-10",
+        "wins": [
+          "Implemented design changes across the platform",
+          "Implemented advanced event booking workflows"
+        ]
+      }
     ]
   },
   {
     "company": "Optima Health",
     "roles": [
-      { "title": "Senior Applications Developer", "start": "2021-12", "end": "2022-04", "wins": [] },
-      { "title": "Applications Developer", "start": "2020-09", "end": "2021-12", "wins": [] }
+      {
+        "title": "Senior Applications Developer",
+        "start": "2021-12",
+        "end": "2022-04",
+        "wins": [
+          "Built a web team from scratch",
+          "Mentored colleagues to bring them up to speed with Appian"
+        ]
+      },
+      {
+        "title": "Applications Developer",
+        "start": "2020-09",
+        "end": "2021-12",
+        "wins": [
+          "Got stuck in with advanced Appian workflows for medical relief",
+          "Helped recreate and modernise scheduling systems"
+        ]
+      }
     ]
   },
   {
     "company": "Langley Foxall",
     "roles": [
-      { "title": "Intermediate Developer", "start": "2019-10", "end": "2020-10", "wins": [] },
-      { "title": "Developer", "start": "2017-10", "end": "2019-10", "wins": [] }
+      {
+        "title": "Intermediate Developer",
+        "start": "2019-10",
+        "end": "2020-10",
+        "wins": ["Took charge of multiple client projects"]
+      },
+      {
+        "title": "Developer",
+        "start": "2017-10",
+        "end": "2019-10",
+        "wins": [
+          "Learned new frameworks and technologies quickly",
+          "Worked on projects to meet client specifications and deadlines"
+        ]
+      }
     ]
   },
   {
     "company": "Click Dealer",
     "roles": [
-      { "title": "PHP Developer", "start": "2017-01", "end": "2017-10", "wins": [] }
+      {
+        "title": "PHP Developer",
+        "start": "2017-01",
+        "end": "2017-10",
+        "wins": [
+          "Implemented the damage-hotspot feature",
+          "Maintained core legacy systems"
+        ]
+      }
     ]
   }
 ]

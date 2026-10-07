@@ -92,6 +92,30 @@ first save of this type, but a watch on a directory continues.
 `src/index.html` is in `src/`, so each render starts one more render. This
 second render makes the same HTML and does not write it, so the loop stops.
 
+## Print and PDF
+
+The page has no separate PDF file. The "Save as PDF" button opens the print
+dialog of the browser, and the reader saves the page from there. Thus, the
+PDF always agrees with the page.
+
+The print styles are the `print:` classes in `src/index.html` and
+`render.mjs`, and the `@media print` block in `src/tailwind.css`:
+
+- The page is A4, with a 15 mm margin.
+- The button and the footer do not print.
+- The content uses the full page width.
+- Each employer stays on one page, so a company name is never alone at the
+  bottom of a page.
+- `stone-300` and `stone-400` print as `stone-500`. The lighter greys are too
+  faint on paper.
+
+To see the PDF without the dialog, run:
+
+```sh
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+  --no-pdf-header-footer --print-to-pdf=/tmp/cv.pdf "file://$PWD/src/index.html"
+```
+
 ## `src/data/socials.json`
 
 An array of links, in page order.
@@ -99,10 +123,17 @@ An array of links, in page order.
 | Field      | Type   | Notes                                         |
 | ---------- | ------ | --------------------------------------------- |
 | `platform` | string | Selects the logo `src/assets/<platform>.svg`. |
-| `url`      | string | The link target.                              |
+| `url`      | string | The link target. `mailto:` is permitted.      |
 
 The page shows each link as its logo. The `platform` value is also the `alt`
 text of the logo.
+
+A web link opens in a new tab. A `mailto:` link does not, because a new tab
+for an email link stays empty in some browsers.
+
+A printed page cannot use a logo as a link. Thus, in print, each logo also
+shows its URL without the `https://` or `mailto:` prefix, for example
+`github.com/dextermb`.
 
 ## `src/data/experience.json`
 
@@ -113,12 +144,13 @@ An array of employers, newest first.
 | `company`       | string           |                                       |
 | `roles`         | array            | Newest role first.                    |
 | `roles[].title` | string           |                                       |
-| `roles[].start` | `"YYYY-MM"`      | The page does not show this.          |
+| `roles[].start` | `"YYYY-MM"`      |                                       |
 | `roles[].end`   | `"YYYY-MM"`/null | `null` shows as `Present`.            |
 | `roles[].wins`  | array, string    | In page order. Optional. May be `[]`. |
 
-The page shows one date for each employer: the `end` of the first role, for
-example `May 2024`.
+The page shows a date range for each role, for example `May 2024 – Mar 2026`.
+It shows no date for the employer. Thus, a reader sees each promotion at an
+employer as a new range.
 
 ### Wins
 

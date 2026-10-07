@@ -2,40 +2,40 @@
   {
     "company": "Veson Nautical",
     "roles": [
-      { "title": "Software Engineering Manager", "start": "2026-03", "end": null },
-      { "title": "Software Engineering Lead", "start": "2024-05", "end": "2026-03" }
+      { "title": "Software Engineering Manager", "start": "2026-03", "end": null, "wins": [] },
+      { "title": "Software Engineering Lead", "start": "2024-05", "end": "2026-03", "wins": [] }
     ]
   },
   {
     "company": "GivEnergy",
     "roles": [
-      { "title": "Software Engineer", "start": "2023-11", "end": "2024-05" }
+      { "title": "Software Engineer", "start": "2023-11", "end": "2024-05", "wins": [] }
     ]
   },
   {
     "company": "Beyonk",
     "roles": [
-      { "title": "Senior Software Engineer", "start": "2022-04", "end": "2023-10" }
+      { "title": "Senior Software Engineer", "start": "2022-04", "end": "2023-10", "wins": [] }
     ]
   },
   {
     "company": "Optima Health",
     "roles": [
-      { "title": "Senior Applications Developer", "start": "2021-12", "end": "2022-04" },
-      { "title": "Applications Developer", "start": "2020-09", "end": "2021-12" }
+      { "title": "Senior Applications Developer", "start": "2021-12", "end": "2022-04", "wins": [] },
+      { "title": "Applications Developer", "start": "2020-09", "end": "2021-12", "wins": [] }
     ]
   },
   {
     "company": "Langley Foxall",
     "roles": [
-      { "title": "Intermediate Developer", "start": "2019-10", "end": "2020-10" },
-      { "title": "Developer", "start": "2017-10", "end": "2019-10" }
+      { "title": "Intermediate Developer", "start": "2019-10", "end": "2020-10", "wins": [] },
+      { "title": "Developer", "start": "2017-10", "end": "2019-10", "wins": [] }
     ]
   },
   {
     "company": "Click Dealer",
     "roles": [
-      { "title": "PHP Developer", "start": "2017-01", "end": "2017-10" }
+      { "title": "PHP Developer", "start": "2017-01", "end": "2017-10", "wins": [] }
     ]
   }
 ]

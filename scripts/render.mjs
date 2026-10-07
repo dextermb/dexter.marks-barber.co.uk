@@ -41,7 +41,7 @@ const commitDate = (sha) =>
 
 const indent = (lines, depth) => lines.map((line) => " ".repeat(depth) + line);
 
-const linkText = (url) => url.replace(/^(mailto:|https?:\/\/)/, "");
+const linkText = (url) => url.replace(/^(mailto:|https?:\/\/)(www\.)?/, "");
 
 const renderSocials = async (socials) => {
   for (const { platform } of socials)
@@ -92,6 +92,44 @@ const renderExperience = (employers) =>
     "  </ul>",
     "</li>",
   ]);
+
+const linkClass =
+  "underline decoration-stone-300 underline-offset-2 hover:decoration-stone-700";
+
+const renderParts = (parts) =>
+  parts.length === 0
+    ? []
+    : [
+        '  <ul class="list-disc space-y-0.5 pl-4 text-stone-500">',
+        ...parts.map(
+          ({ url, description }) =>
+            `    <li><a class="${linkClass}" href="${url}" rel="noreferrer noopener" target="_blank">${linkText(url)}</a> – ${description}</li>`,
+        ),
+        "  </ul>",
+      ];
+
+const renderProjects = (projects) =>
+  projects.flatMap(
+    ({ name, url, private: closed, year, description, stack = [], parts = [] }) => [
+      '<li class="space-y-1 print:break-inside-avoid">',
+      '  <div class="flex justify-between gap-4">',
+      '    <p class="text-stone-700">',
+      url
+        ? `      <a class="font-medium ${linkClass}" href="${url}" rel="noreferrer noopener" target="_blank">${name}</a>`
+        : `      <span class="font-medium">${name}</span>`,
+      ...(closed ? ['      <span class="text-stone-500">· Private source</span>'] : []),
+      ...(url && linkText(url) !== name
+        ? [`      <span class="hidden text-stone-500 print:inline">· ${linkText(url)}</span>`]
+        : []),
+      "    </p>",
+      `    <p class="shrink-0 text-stone-500">${year}</p>`,
+      "  </div>",
+      `  <p class="text-stone-700">${description}</p>`,
+      ...renderParts(parts),
+      ...(stack.length ? [`  <p class="text-stone-500">${stack.join(", ")}</p>`] : []),
+      "</li>",
+    ],
+  );
 
 const renderSkills = (categories) =>
   categories.flatMap(({ category, groups }, index) => [
@@ -193,6 +231,7 @@ html = fill(
 );
 
 html = fill(html, "experience", renderExperience(experience));
+html = fill(html, "projects", renderProjects(await read("data/projects.json")));
 
 html = fill(html, "skills", renderSkills(await read("data/skills.json")));
 html = fill(

@@ -1,0 +1,107 @@
+[
+  {
+    "name": "cmux",
+    "url": "https://github.com/dextermb/cmux",
+    "year": 2026,
+    "description": "Terminal app that runs and supervises many Claude Code sessions at the same time",
+    "stack": ["Go", "Bubble Tea", "MCP"]
+  },
+  {
+    "name": "needl.ee",
+    "url": "https://needl.ee",
+    "private": true,
+    "year": 2026,
+    "description": "Cross-stitch progress tracker: upload a pattern, map its grid, and mark each stitch as you work it",
+    "stack": ["Next.js", "TypeScript", "MySQL", "Drizzle", "AWS", "Terraform"]
+  },
+  {
+    "name": "099.io",
+    "private": true,
+    "year": 2026,
+    "description": "Self-hosted services behind one single sign-on.",
+    "stack": ["Go", "Gin", "GORM", "htmx", "Hono", "Docker"],
+    "parts": [
+      {
+        "url": "https://auth.099.io",
+        "description": "single sign-on with EdDSA tokens and refresh-token rotation"
+      },
+      {
+        "url": "https://status.099.io",
+        "description": "meeting status board for family"
+      },
+      {
+        "url": "https://shopping.099.io",
+        "description": "shared shopping lists with budgets and target dates"
+      },
+      {
+        "url": "https://todos.099.io",
+        "description": "shared household todo list with blockers and routines"
+      }
+    ]
+  },
+  {
+    "name": "Vitest coverage bug",
+    "url": "https://github.com/vitest-dev/vitest/issues/11012",
+    "year": 2026,
+    "description": "Minimal reproduction of a merged-coverage bug, reported to and closed by the Vitest team",
+    "stack": ["TypeScript", "Vitest"]
+  },
+  {
+    "name": "deploy-api",
+    "private": true,
+    "year": 2025,
+    "description": "Deploy service that verifies GitHub push webhooks, pulls the repository, and restarts its Docker Compose stack",
+    "stack": ["Go", "Gin", "go-git", "Docker"]
+  },
+  {
+    "name": "git-admin",
+    "url": "https://github.com/ninetynine/git-admin",
+    "year": "2019 – 2021",
+    "description": "Command-line tool to manage GitHub repositories, branches, collaborators, and branch protection. 25 stars on GitHub",
+    "stack": ["JavaScript", "Node.js", "GitHub API"]
+  },
+  {
+    "name": "Small npm packages",
+    "year": "2019 – 2020",
+    "description": "Three small packages, published on npm",
+    "stack": ["JavaScript", "npm"],
+    "parts": [
+      {
+        "url": "https://www.npmjs.com/package/@ninetynine/call",
+        "description": "helper that calls one function or many"
+      },
+      {
+        "url": "https://www.npmjs.com/package/@ninetynine/noop",
+        "description": "no-op and comparison helpers"
+      },
+      {
+        "url": "https://www.npmjs.com/package/tw-ts",
+        "description": "Tailwind plugin for text-shadow classes"
+      }
+    ]
+  },
+  {
+    "name": "Early PHP open source",
+    "year": 2018,
+    "description": "Four small PHP projects, published on GitHub",
+    "stack": ["PHP", "Composer"],
+    "parts": [
+      {
+        "url": "https://github.com/dextermb/framework",
+        "description": "framework for JSON APIs"
+      },
+      {
+        "url": "https://github.com/dextermb/huddle",
+        "description": "standalone collection helper library"
+      },
+      {
+        "url": "https://github.com/dextermb/ledger",
+        "description": "mining ledger API for an EVE Online corporation"
+      },
+      {
+        "url": "https://github.com/ninetynine/shuttle",
+        "description": "framework for JSON APIs, second version"
+      }
+    ]
+  }
+]

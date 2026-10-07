@@ -1,8 +1,9 @@
 # Content
 
-The contact links, the headline, the experience list, the skills list, and the
-education list come from JSON files in `src/data/`. `scripts/render.mjs` writes these lists
-into `src/index.html` when you run `pnpm build`. Do not edit the lists in
+The contact links, the headline, the experience list, the projects list, the
+skills list, and the education list come from JSON files in `src/data/`.
+`scripts/render.mjs` writes these lists into `src/index.html` when you run
+`pnpm build`. Do not edit the lists in
 `src/index.html`, because the next build replaces them.
 
 ## Data flow
@@ -10,6 +11,7 @@ into `src/index.html` when you run `pnpm build`. Do not edit the lists in
 ```
 src/data/socials.json ────┐
 src/data/experience.json ─┤
+src/data/projects.json ───┤
 src/data/skills.json ─────┼─▶ scripts/render.mjs ─▶ src/index.html ─▶ tailwindcss ─▶ src/styles.css
 src/data/education.json ──┤
 VERCEL_GIT_COMMIT_SHA ────┘
@@ -17,8 +19,8 @@ VERCEL_GIT_COMMIT_SHA ────┘
 
 1. `render.mjs` finds each marker pair in `src/index.html`, for example
    `<!-- skills -->` … `<!-- /skills -->`. The markers are `description`,
-   `headline`, `socials`, `experience`, `skills`, `education`, and
-   `last updated`.
+   `headline`, `socials`, `experience`, `projects`, `skills`, `education`,
+   and `last updated`.
 2. It replaces the text between each pair with new elements.
 3. Tailwind then reads `src/index.html` and writes `src/styles.css`.
 
@@ -176,6 +178,33 @@ HTML from the meta text, because a tag in an attribute shows as text.
 
 If no role has `"end": null`, the page shows no headline, and the description
 is only the tagline.
+
+## `src/data/projects.json`
+
+An array of projects, in page order.
+
+| Field         | Type          | Notes                                       |
+| ------------- | ------------- | ------------------------------------------- |
+| `name`        | string        | The link text.                              |
+| `url`         | string        | Optional. The live site or the public repo. |
+| `private`     | boolean       | Optional. Shows `· Private source`.         |
+| `year`        | number/string | On the right. A range, e.g. `2019 – 2021`.  |
+| `description` | string        | One line. Inline HTML is permitted.         |
+| `stack`       | array, string | Optional. Shows as a comma list.            |
+| `parts`       | array         | Optional. Bullets under the description.    |
+| `parts[].url` | string        | The link. Its text is the URL, shortened.   |
+| `parts[].description` | string | Follows the link, after a dash.        |
+
+Use `parts` to keep related repositories in one entry, for example each
+service of `099.io`, so the section stays short. A part shows its URL as its
+link text, so the URL also shows in print.
+
+A private project links to its live site, if it has one, and never to its
+repository. The label tells the reader why there is no repository link.
+
+In print, the URL shows after the name, without the `https://` or `www.`
+prefix. If this text is the same as the name, for example `needl.ee`, it does
+not show.
 
 ## `src/data/skills.json`
 

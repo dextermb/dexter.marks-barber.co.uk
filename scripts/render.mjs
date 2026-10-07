@@ -70,18 +70,18 @@ const renderWins = (wins) =>
   wins.length === 0
     ? []
     : [
-        '      <ul class="mt-1 list-disc space-y-0.5 pl-4 text-stone-500">',
+        '      <ul class="list-disc space-y-0.5 pl-4 text-stone-500">',
         ...wins.map((win) => `        <li>${win}</li>`),
         "      </ul>",
       ];
 
 const renderExperience = (employers) =>
   employers.flatMap(({ company, roles }) => [
-    '<li class="print:break-inside-avoid">',
-    `  <p class="mb-1 font-medium text-stone-700">${company}</p>`,
+    '<li class="space-y-1 print:break-inside-avoid">',
+    `  <p class="font-medium text-stone-700">${company}</p>`,
     '  <ul class="space-y-3 pl-2 text-stone-700">',
     ...roles.flatMap(({ title, start, end, wins = [] }) => [
-      "    <li>",
+      '    <li class="space-y-1">',
       '      <div class="flex justify-between gap-4">',
       `        <p>${title}</p>`,
       `        <p class="shrink-0 text-stone-500">${formatDate(start)} – ${formatDate(end)}</p>`,

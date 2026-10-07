@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tailwindcss -i src/tailwind.css -o src/styles.css -m",
+    "prepare": "git config core.hooksPath .githooks",
+    "build": "node scripts/render.mjs && tailwindcss -i src/tailwind.css -o src/styles.css -m",
+    "watch": "pnpm run \"/^watch:/\"",
+    "watch:html": "node --watch-path=src --watch-path=scripts --watch-preserve-output scripts/render.mjs",
+    "watch:css": "tailwindcss -i src/tailwind.css -o src/styles.css -m -w",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -1,0 +1,48 @@
+[
+  {
+    "category": "Scripting",
+    "skills": [
+      { "name": "Bash", "level": 3 },
+      { "name": "Go", "level": 3 },
+      { "name": "Python", "level": 3 },
+      { "name": "Java", "level": 2 }
+    ]
+  },
+  {
+    "category": "Databases",
+    "skills": [
+      { "name": "MySQL", "level": 4 },
+      { "name": "Snowflake", "level": 3 },
+      { "name": "MSSQL", "level": 3 },
+      { "name": "Postgres", "level": 2 }
+    ]
+  },
+  {
+    "category": "Web",
+    "skills": [
+      { "name": "PHP", "level": 5 },
+      { "name": "CSS/CSS3", "level": 4 },
+      { "name": "Tailwind", "level": 4 },
+      { "name": "HTML/HTML5", "level": 4 },
+      { "name": "JavaScript", "level": 5 },
+      { "name": "TypeScript", "level": 4 },
+      { "name": "React", "level": 5 },
+      { "name": "Vue", "level": 3 }
+    ]
+  },
+  {
+    "category": "Tooling",
+    "skills": [
+      {
+        "name": "Super <span class=\"line-through text-muted\">Artificial</span> Intelligence",
+        "level": 4
+      },
+      { "name": "Atlassian Suite", "level": 4 },
+      { "name": "Git<span class=\"font-medium\">Lab</span> CI/CD", "level": 5 },
+      { "name": "Git<span class=\"font-medium\">Hub</span> CI/CD", "level": 4 },
+      { "name": "Terraform", "level": 3 },
+      { "name": "AWS Infrastructure", "level": 3 },
+      { "name": "GCP Infrastructure", "level": 1 }
+    ]
+  }
+]

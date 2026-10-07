@@ -1,0 +1,41 @@
+[
+  {
+    "company": "Veson Nautical",
+    "roles": [
+      { "title": "Software Engineering Manager", "start": "2026-03", "end": null },
+      { "title": "Software Engineering Lead", "start": "2024-05", "end": "2026-03" }
+    ]
+  },
+  {
+    "company": "GivEnergy",
+    "roles": [
+      { "title": "Software Engineer", "start": "2023-11", "end": "2024-05" }
+    ]
+  },
+  {
+    "company": "Beyonk",
+    "roles": [
+      { "title": "Senior Software Engineer", "start": "2022-04", "end": "2023-10" }
+    ]
+  },
+  {
+    "company": "Optima Health",
+    "roles": [
+      { "title": "Senior Applications Developer", "start": "2021-12", "end": "2022-04" },
+      { "title": "Applications Developer", "start": "2020-09", "end": "2021-12" }
+    ]
+  },
+  {
+    "company": "Langley Foxall",
+    "roles": [
+      { "title": "Intermediate Developer", "start": "2019-10", "end": "2020-10" },
+      { "title": "Developer", "start": "2017-10", "end": "2019-10" }
+    ]
+  },
+  {
+    "company": "Click Dealer",
+    "roles": [
+      { "title": "PHP Developer", "start": "2017-01", "end": "2017-10" }
+    ]
+  }
+]

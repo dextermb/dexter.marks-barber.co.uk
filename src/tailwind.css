@@ -1,8 +1,6 @@
 @import "tailwindcss";
-@import "./blackline.css";
 
-@layer base {
-  html {
-    color-scheme: dark;
-  }
+@theme {
+  --font-geist: Geist, var(--font-sans);
+  --font-geist-mono: "Geist Mono", var(--font-mono);
 }

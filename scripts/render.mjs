@@ -56,6 +56,15 @@ const renderSocials = async (socials) => {
   ]);
 };
 
+const renderWins = (wins) =>
+  wins.length === 0
+    ? []
+    : [
+        '      <ul class="list-disc pl-4 text-stone-400">',
+        ...wins.map((win) => `        <li>${win}</li>`),
+        "      </ul>",
+      ];
+
 const renderExperience = (employers) =>
   employers.flatMap(({ company, roles }) => [
     "<li>",
@@ -64,9 +73,10 @@ const renderExperience = (employers) =>
     `    <p class="text-stone-300">${formatDate(roles[0].end)}</p>`,
     "  </div>",
     '  <ul class="pl-2 text-stone-500">',
-    ...roles.flatMap(({ title }) => [
+    ...roles.flatMap(({ title, wins = [] }) => [
       "    <li>",
       `      <p>${title}</p>`,
+      ...renderWins(wins),
       "    </li>",
     ]),
     "  </ul>",

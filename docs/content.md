@@ -108,16 +108,28 @@ text of the logo.
 
 An array of employers, newest first.
 
-| Field           | Type             | Notes                        |
-| --------------- | ---------------- | ---------------------------- |
-| `company`       | string           |                              |
-| `roles`         | array            | Newest role first.           |
-| `roles[].title` | string           |                              |
-| `roles[].start` | `"YYYY-MM"`      | The page does not show this. |
-| `roles[].end`   | `"YYYY-MM"`/null | `null` shows as `Present`.   |
+| Field           | Type             | Notes                                 |
+| --------------- | ---------------- | ------------------------------------- |
+| `company`       | string           |                                       |
+| `roles`         | array            | Newest role first.                    |
+| `roles[].title` | string           |                                       |
+| `roles[].start` | `"YYYY-MM"`      | The page does not show this.          |
+| `roles[].end`   | `"YYYY-MM"`/null | `null` shows as `Present`.            |
+| `roles[].wins`  | array, string    | In page order. Optional. May be `[]`. |
 
 The page shows one date for each employer: the `end` of the first role, for
 example `May 2024`.
+
+### Wins
+
+A win is one result of a role, for example "Cut the deploy time from 40 min to
+6 min". Write a result, not a duty. Use a number where you can. Each win is on
+the role where it happened, not on the employer. Thus, a promotion shows what
+changed between the two roles.
+
+The page shows the wins as a bullet list under the role title. If a role has
+no wins, the page shows only the title. Thus, you can add wins one role at a
+time. A win can contain inline HTML (see [Inline HTML](#inline-html)).
 
 ## `src/data/skills.json`
 

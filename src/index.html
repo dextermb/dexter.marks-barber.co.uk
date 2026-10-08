@@ -23,6 +23,7 @@
       href="https://fonts.googleapis.com/css2?family=Geist&family=Geist+Mono&display=swap"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script src="htmx.min.js" defer></script>
   </head>
 
   <body class="font-geist">
@@ -42,20 +43,9 @@
           early 2010s, across agencies, occupational health, events, renewable
           energy, and maritime.
         </p>
-
-        <div
-          class="grid grid-cols-[auto_1fr] *:even:text-stone-500 *:even:text-right"
-        >
-          <p class="hidden print:block">Email</p>
-          <p class="hidden print:block">dexter@marks-barber.co.uk</p>
-          <p>Location</p>
-          <p>Stafford, Staffordshire</p>
-          <p>Hobbies</p>
-          <p>Car shows and Old School RuneScape</p>
-        </div>
       </hgroup>
 
-      <section class="space-y-4 print:hidden">
+      <section class="block print:hidden">
         <ul class="flex flex-wrap gap-x-4 gap-y-1 print:text-sm">
           <!-- socials -->
           <li>
@@ -78,6 +68,22 @@
           </li>
           <!-- /socials -->
         </ul>
+      </section>
+
+      <section
+        class="hidden grid-cols-[auto_1fr] *:even:text-stone-500 *:even:text-right print:grid"
+      >
+        <p>Location</p>
+        <p>Staffordshire, UK</p>
+        <p>Email</p>
+        <p>dexter@marks-barber.co.uk</p>
+        <p>LinkedIn</p>
+        <p>https://linkedin.com/in/dexter-marks-barber</p>
+        <p>GitHub</p>
+        <p>https://github.com/dextermb</p>
+      </section>
+
+      <section class="space-y-4 print:hidden">
         <a
           class="flex items-center gap-2 px-3 py-2 ring-1 ring-stone-200 shadow rounded text-sm hover:bg-stone-50"
           href="mailto:dexter@marks-barber.co.uk"
@@ -86,16 +92,33 @@
           <span>Drop me an email</span>
         </a>
         <button
+          id="expand-button"
           type="button"
           class="w-full flex items-center gap-2 px-3 py-2 ring-1 ring-stone-200 shadow rounded text-sm cursor-pointer hover:bg-stone-50"
+          hx-on:click="
+            htmx.findAll('[data-expanded]').forEach((element) => {
+              element.dataset.expanded = element.dataset.expanded !== 'true';
+              htmx.toggleClass(element, 'hidden');
+              htmx.toggleClass(element, element.dataset.expandedClass ?? 'block');
+            })
+          "
+        >
+          <img class="size-4" src="assets/expand.svg" alt="Expand" />
+          <span>Expand</span>
+        </button>
+        <button
+          type="button"
+          class="w-full hidden items-center gap-2 px-3 py-2 ring-1 ring-stone-200 shadow rounded text-sm cursor-pointer hover:bg-stone-50"
           onclick="window.print()"
+          data-expanded="false"
+          data-expanded-class="flex"
         >
           <img class="size-4" src="assets/printer.svg" alt="Print" />
           <span>Save as PDF</span>
         </button>
       </section>
 
-      <section class="space-y-3">
+      <section class="hidden space-y-3 print:block" data-expanded="false">
         <h2 class="font-medium">Experience</h2>
         <ul class="space-y-5 text-sm">
           <!-- experience -->
@@ -224,7 +247,7 @@
         </ul>
       </section>
 
-      <section class="space-y-3">
+      <section class="hidden space-y-3 print:block" data-expanded="false">
         <h2 class="font-medium">Skills and Tooling</h2>
         <ol class="text-sm">
           <!-- skills -->
@@ -300,7 +323,7 @@
         </ol>
       </section>
 
-      <section class="space-y-3">
+      <section class="hidden space-y-3 print:block" data-expanded="false">
         <h2 class="font-medium">Projects</h2>
         <ul class="space-y-4 text-sm">
           <!-- projects -->
@@ -411,7 +434,7 @@
         </ul>
       </section>
 
-      <section>
+      <section class="hidden space-y-3 print:block" data-expanded="false">
         <h2 class="font-medium">Education</h2>
         <ul class="space-y-2 text-sm">
           <!-- education -->

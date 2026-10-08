@@ -1,6 +1,7 @@
 node_modules/
 
 styles.css
+htmx.min.js
 .vercel
 
 .DS_Store

@@ -94,8 +94,10 @@
         <button
           id="expand-button"
           type="button"
-          class="w-full flex items-center gap-2 px-3 py-2 ring-1 ring-stone-200 shadow rounded text-sm cursor-pointer hover:bg-stone-50"
+          class="group w-full flex items-center gap-2 px-3 py-2 ring-1 ring-stone-200 shadow rounded text-sm cursor-pointer hover:bg-stone-50"
+          aria-expanded="false"
           hx-on:click="
+            this.ariaExpanded = this.ariaExpanded !== 'true';
             htmx.findAll('[data-expanded]').forEach((element) => {
               element.dataset.expanded = element.dataset.expanded !== 'true';
               htmx.toggleClass(element, 'hidden');
@@ -103,8 +105,18 @@
             })
           "
         >
-          <img class="size-4" src="assets/expand.svg" alt="Expand" />
-          <span>Expand</span>
+          <img
+            class="size-4 group-aria-expanded:hidden"
+            src="assets/expand.svg"
+            alt="Expand"
+          />
+          <img
+            class="size-4 hidden group-aria-expanded:block"
+            src="assets/collapse.svg"
+            alt="Collapse"
+          />
+          <span class="group-aria-expanded:hidden">Expand</span>
+          <span class="hidden group-aria-expanded:inline">Collapse</span>
         </button>
         <button
           type="button"

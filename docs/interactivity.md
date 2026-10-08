@@ -46,6 +46,13 @@ display class, for example:
 <button class="hidden items-center" data-expanded="false" data-expanded-class="flex">…</button>
 ```
 
+The button keeps its own state in `aria-expanded`, not in `data-expanded`. An
+element with `data-expanded` starts hidden, but the button must always show.
+Each click flips `aria-expanded`, and the `group-aria-expanded:` classes on
+the icons and the labels then show `collapse.svg` and "Collapse" in place of
+`expand.svg` and "Expand". A screen reader also reads `aria-expanded`, so it
+tells the reader the current state.
+
 Use `data-expanded-class` when the element needs a display other than
 `block`, for example the "Save as PDF" button, which is a flex row.
 
